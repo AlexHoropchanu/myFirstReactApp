@@ -1,21 +1,25 @@
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-
+import {
+  addPostActionCreator,
+  removePostActionCreator,
+  changePostTextAreaActionCreator,
+} from "../../../Redux/state";
 const MyPosts = (props) => {
   let PostsElement = props.profilePage.postsData.map((el) => (
-    <Post message={el.message} likeCounts={el.likeCounts} />
+    <Post key={el.id} message={el.message} likeCounts={el.likeCounts} />
   ));
-  let addPostElem = React.createRef();
   let addPost = () => {
-    props.addPost();
+    props.dispatch(addPostActionCreator());
   };
   let removePost = () => {
-    props.removePost();
+    props.dispatch(removePostActionCreator());
   };
+  let addPostElem = React.createRef();
   let onChange = () => {
     let text = addPostElem.current.value;
-    props.changePostTextArea(text);
+    props.dispatch(changePostTextAreaActionCreator(text));
   };
   return (
     <div>
