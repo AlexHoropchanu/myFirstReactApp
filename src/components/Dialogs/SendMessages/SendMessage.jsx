@@ -1,18 +1,13 @@
 import classes from "./SendMessage.module.css";
 import React from "react";
-import {
-  addMessageActionCreator,
-  changeMessageTextAreaActionCreator,
-} from "../../../Redux/dialogsReducer";
 const SendMessage = (props) => {
-  let textareaElem = React.createRef();
   let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+    props.addMessage();
   };
-
+  let textareaElem = React.createRef();
   let onChange = () => {
     let text = textareaElem.current.value;
-    props.dispatch(changeMessageTextAreaActionCreator(text));
+    props.onChange(text);
   };
   return (
     <div className={classes.wrapper}>
@@ -23,7 +18,7 @@ const SendMessage = (props) => {
         className={classes.textarea}
         ref={textareaElem}
         onChange={onChange}
-        value={props.dialogsPageText}
+        value={props.newText}
       ></textarea>
       <button onClick={addMessage} className={classes.btn}>
         Отправить

@@ -23,15 +23,16 @@ const dialogsReducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case ADD_MESSAGE:
-      state.messageData.push({
-        message: state.newMessageText,
-        id: Math.random(),
-      });
-      state.newMessageText = "";
+      if (state.newMessageText) {
+        state.messageData.push({
+          message: state.newMessageText,
+          id: Math.random(),
+        });
+        state.newMessageText = "";
+      }
       return state;
     // eslint-disable-next-line no-fallthrough
     case CHANGE_MESSAGE_TEXT_AREA:
-      state.newMessageText = action.newMessageText;
       state.newMessageText = action.newMessageText;
       return state;
     default:

@@ -8,7 +8,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-
 const App = (props) => {
   return (
     <BrowserRouter>
@@ -16,24 +15,8 @@ const App = (props) => {
         <Header />
         <Nav />
         <div className="main">
-          <Route
-            path="/profile"
-            render={() => (
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          <Route
-            path="/messages"
-            render={() => (
-              <Dialogs
-                dialogsPage={props.state.dialogsPage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
+          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/messages" render={() => <Dialogs />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />
