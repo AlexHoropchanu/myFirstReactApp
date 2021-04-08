@@ -1,24 +1,24 @@
 import React from "react";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import store from "./Redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
-
-let renderEntireTree = (state) => {
+import store from "./Redux/reduxStore";
+import { Provider } from "react-redux";
+let renderEntireTree = (store) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App
-        state={state}
-        addPost={store.addPost.bind(store)}
-        removePost={store.removePost.bind(store)}
-        changePostTextArea={store.changePostTextArea.bind(store)}
-      />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
 };
-renderEntireTree(store.getstate());
-store.subscribe(renderEntireTree);
+
+renderEntireTree(store);
+store.subscribe(() => {
+  renderEntireTree(store);
+});
 
 reportWebVitals();

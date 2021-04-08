@@ -1,15 +1,10 @@
-import MyPosts from "./MyPosts/MyPosts";
+import SuperMyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts
-        profilePage={props.profilePage}
-        addPost={props.addPost}
-        removePost={props.removePost}
-        changePostTextArea={props.changePostTextArea}
-      />
+      <SuperMyPostsContainer />
     </div>
   );
 };
